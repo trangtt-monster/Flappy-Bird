@@ -2212,7 +2212,8 @@ MonoBehaviour:
   - {fileID: 1559013965715528, guid: e161e893614291a4f901af2beb8ba3f7, type: 3}
   - {fileID: 1605059603028916, guid: a8e61c5448eed224db90a8f4df1c01a0, type: 3}
   - {fileID: 1245435645037764, guid: c146c4e9728549d49acf16ab2faffc86, type: 3}
-  obstaclePrefab: {fileID: 0}
+  obstaclePrefab: {fileID: 1605059603028916, guid: a8e61c5448eed224db90a8f4df1c01a0,
+    type: 3}
   maxHardDistance: 3
   minHardDistance: 1.5
   maxEasyDistance: 1.5
