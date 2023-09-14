@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D playerRigid;
 	private Quaternion downRotation, upRotation;
 	[SerializeField] private Material grayscale;
+	float velocity;
 
 	void Start () {
 		tiltSmooth = maxTiltSmooth;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour {
 
 	void LateUpdate () {
 		if (GameManager.Instance.GameState ()) {
+			velocity += -9.8f * Time.deltaTime;
 			if (Input.GetMouseButtonDown (0)) {
 				if(!start){
 					// This code checks the first tap. After first tap the tutorial image is removed and game starts
@@ -41,19 +43,22 @@ public class PlayerController : MonoBehaviour {
 					GameManager.Instance.GetReady ();
 					GetComponent<Animator>().speed = 2;
 				}
-				playerRigid.gravityScale = 1f;
+				//playerRigid.gravityScale = 1f;
 				tiltSmooth = minTiltSmooth;
 				transform.rotation = upRotation;
-				playerRigid.velocity = Vector2.zero;
+				//playerRigid.velocity = Vector2.zero;
 				// Push the player upwards
-				playerRigid.AddForce (Vector2.up * thrust);
+				//playerRigid.AddForce (Vector2.up * thrust);
+
+				velocity = 5;
 				SoundManager.Instance.PlayTheAudio("Flap");
 			}
+			transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime, Space.World);
 		}
 		if (playerRigid.velocity.y < -1f) {
 			// Increase gravity so that downward motion is faster than upward motion
 			tiltSmooth = maxTiltSmooth;
-			playerRigid.gravityScale = 2f;
+			//playerRigid.gravityScale = 2f;
 		}
 	}
 
