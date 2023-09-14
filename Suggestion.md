@@ -1,0 +1,1 @@
+Restart không cần load lại Scene.
