@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager Instance;
 
-	[SerializeField] private GameObject[] playerPrefabs;
+	//[SerializeField] private GameObject[] playerPrefabs;
+	[SerializeField] private GameObject playerPrefab;
+	[SerializeField] private RuntimeAnimatorController[] playerAnimators;
 	[SerializeField] private Transform playerPos;
 	[SerializeField] private Sprite[] backgroundImage;
 	[SerializeField] private SpriteRenderer background;
@@ -38,7 +40,11 @@ public class GameManager : MonoBehaviour {
 
 		ready = true;
 		// Create one amongst the 3 players
-		flappy = Instantiate (playerPrefabs[Random.Range (0, playerPrefabs.Length)], playerPos.position, transform.rotation);
+		//flappy = Instantiate (playerPrefabs[Random.Range (0, playerPrefabs.Length)], playerPos.position, transform.rotation);
+
+		flappy = Instantiate (playerPrefab, playerPos.position, transform.rotation);
+		flappy.GetComponent<Animator>().runtimeAnimatorController = playerAnimators[Random.Range (0, playerAnimators.Length)];
+
 		flappy.transform.parent = playerPos;
 		// Use one amongst the 2 Backgrounds
 		background.sprite = backgroundImage[Random.Range (0, backgroundImage.Length)];
