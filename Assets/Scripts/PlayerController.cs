@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 	private float timer, tiltSmooth, y;
 	private Rigidbody2D playerRigid;
 	private Quaternion downRotation, upRotation;
+	[SerializeField] private Material grayscale;
 
 	void Start () {
 		tiltSmooth = maxTiltSmooth;
@@ -82,6 +83,7 @@ public class PlayerController : MonoBehaviour {
 		playerRigid.velocity = Vector2.zero;
 		// Stop the flapping animation
 		GetComponent<Animator> ().enabled = false;
+		GetComponent<SpriteRenderer>().material = grayscale;
 	}
 
 }
